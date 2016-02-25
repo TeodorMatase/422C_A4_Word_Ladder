@@ -2,8 +2,7 @@ package assignment4;
 
 import java.util.List;
 
-public class Assign4Driver
-{
+public class A4Driver {
     public static void main(String[] args)
     {
         // Create a word ladder solver object
