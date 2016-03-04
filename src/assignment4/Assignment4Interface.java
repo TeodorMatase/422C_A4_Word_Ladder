@@ -1,3 +1,8 @@
+/**
+ * @author Teo Matase
+ * @author Royce Li
+ * Interface for word Ladder
+ */
 package assignment4;
 
 import java.util.List;

@@ -1,3 +1,9 @@
+/**
+ * @author Teo Matase
+ * @author Royce Li
+ * Throws exceptions if needed
+ */
+
 package assignment4;
 
 public class NoSuchLadderException extends Exception

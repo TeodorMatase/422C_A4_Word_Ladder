@@ -1,5 +1,9 @@
-//Royce Li rl26589
-//Teo Matase tm27497
+/**
+ * @author Teo Matase
+ * @author Royce Li
+ * Main Driver for Word Ladder
+ */
+
 
 package assignment4;
 
@@ -21,4 +25,11 @@ public class A4Driver {
             e.printStackTrace();
         }
     }
+
+
+public String MakeLadder(String fromWord, String toWord, int position){
+	
+	return "";
+}
+
 }
