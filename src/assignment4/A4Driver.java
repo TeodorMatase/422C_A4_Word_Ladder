@@ -14,19 +14,9 @@ public class A4Driver {
     public static void main(String[] args)
     {
         // Create a word ladder solver object
-    	if(args == null){
-    		System.out.println("No Dictionary file found");
-    		return;
-    	}
-    	else if(args[0].length() <= 0){
-    		System.out.println("No Dictionary file found");
-    		return;
-    	}
-    	else if(args[1].length() <= 0){
-    		System.out.println("No input file found");
-    		return;
-    	}
-        Assignment4Interface wordLadderSolver = new WordLadderSolver(args[0]);
+    	Dictionary Dictionary = new Dictionary(args[0]);
+    	System.out.println(Dictionary.length);
+/*       WordLadderSolver wordLadderSolver = new WordLadderSolver(args[0]);
 
         try 
         {
@@ -37,6 +27,7 @@ public class A4Driver {
         {
             e.printStackTrace();
         }
+ */   
     }
 
 
@@ -47,6 +38,9 @@ public class A4Driver {
     * be different by exactly one letter.
     * @throws NoSuchLadderException is thrown if no word ladder can be generated from startWord and endWord.
     */
+    
+    
+/*    
 public String MakeLadder(String fromWord, String toWord, int position){
 	if(charDifference(fromWord,toWord) == 1){
 		return fromWord;
@@ -66,7 +60,7 @@ public int charDifference(String fromWord, String toWord){
 	}
 	return count;
 }
-
+*/
 }
 
 

@@ -13,21 +13,11 @@ import java.io.*;
 // do not change class name or interface it implements
 public class WordLadderSolver
 {
-	public List<String> Dictionary;
+	public Dictionary Dict;
 	public List<String> WordLadder;
 	
 	public WordLadderSolver(String dict){
-		String filename = dict.trim();
-		if(filename.length() == 0){
-			throw Exception("No files were labelled as input");
-		}
-		try {
-			FileInputStream in = new FileInputStream(filename);
-			 BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		this.Dict = new Dictionary(dict);
 	   
 	     
 	     
