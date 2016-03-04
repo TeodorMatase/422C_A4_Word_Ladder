@@ -30,6 +30,10 @@ public class LinkedList {
 	public Node endNode;
 	public int length;
 	
+    /* @param start The starting word in the word ladder.
+    * @param end The ending word in the word ladder.
+    * Creates a linkedList with the starting and ending word
+    */
 	public LinkedList(String start, String end){
 		this.startNode = new Node(start);
 		this.endNode = new Node(end);
@@ -38,7 +42,8 @@ public class LinkedList {
 		this.length = 2;
 	}
 	
-	//Adds a new word to the list
+    /* @param x Adds a 
+    */
 	public void add(String x){
 		if(search(x) == false){
 			Node temp = startNode;
@@ -48,32 +53,25 @@ public class LinkedList {
 			Node NewNode = new Node(x,temp.nextNode,temp);
 			length++;
 		}
-		else{
-			System.out.println("Word already exists in SolutionList");
-		}
 	}
 	
 	//Removes a word from the list
 	public void remove(String x){
-		if(search(x) == true){
-			Node temp = startNode;
-			while(temp != null){
-				if(temp.word.equals(x)){
-					Node nxt = temp.nextNode;
-					Node prv = temp.previousNode;
-					nxt.previousNode = prv;
-					prv.nextNode = nxt;
-					length--;
-					return;
-				}
-				else{
-					temp = temp.nextNode;
-				}
+		Node temp = startNode;
+		while(temp != null){
+			if(temp.word.equals(x)){
+				Node nxt = temp.nextNode;
+				Node prv = temp.previousNode;
+				nxt.previousNode = prv;
+				prv.nextNode = nxt;
+				length--;
+				return;
+			}
+			else{
+				temp = temp.nextNode;
 			}
 		}
-		else{
-			System.out.println("Word does not exist in SolutionList");
-		}
+		
 	}
 	
 	//Checks if word is in list

@@ -1,7 +1,7 @@
 /**
  * @author Teo Matase
  * @author Royce Li
- * Throws exceptions if needed
+ * Throws exceptions 
  */
 
 package assignment4;

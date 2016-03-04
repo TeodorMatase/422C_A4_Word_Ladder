@@ -10,15 +10,28 @@ package assignment4;
 import java.util.List;
 
 public class A4Driver {
+    @SuppressWarnings("unused")
     public static void main(String[] args)
     {
         // Create a word ladder solver object
-        Assignment4Interface wordLadderSolver = new WordLadderSolver();
+    	if(args == null){
+    		System.out.println("No Dictionary file found");
+    		return;
+    	}
+    	else if(args[0].length() <= 0){
+    		System.out.println("No Dictionary file found");
+    		return;
+    	}
+    	else if(args[1].length() <= 0){
+    		System.out.println("No input file found");
+    		return;
+    	}
+        Assignment4Interface wordLadderSolver = new WordLadderSolver(args[0]);
 
         try 
         {
-            List<String> result = wordLadderSolver.computeLadder("money", "honey");
-            boolean correct = wordLadderSolver.validateResult("money", "honey", result);
+            LinkedList result = wordLadderSolver.computeLadder("money", "honey");
+			boolean correct = wordLadderSolver.validateResult("money", "honey", result);
         } 
         catch (NoSuchLadderException e) 
         {
@@ -27,9 +40,33 @@ public class A4Driver {
     }
 
 
+    /* @param startWord The starting word in the word ladder.
+    * @param endWord The ending word in the word ladder.
+    * @return A list of strings that represents the word ladder. The 0th index should contain
+    * the startWord and the last position should contain endWord. All intermediate words should
+    * be different by exactly one letter.
+    * @throws NoSuchLadderException is thrown if no word ladder can be generated from startWord and endWord.
+    */
 public String MakeLadder(String fromWord, String toWord, int position){
-	
+	if(charDifference(fromWord,toWord) == 1){
+		return fromWord;
+	}
 	return "";
 }
 
+
+public int charDifference(String fromWord, String toWord){
+	int count = 0;
+	for(int i = 0; i < 5; i++){
+		char a = fromWord.charAt(i);
+		char b = fromWord.charAt(i);
+		if(b != a){
+			count++;
+		}
+	}
+	return count;
 }
+
+}
+
+
