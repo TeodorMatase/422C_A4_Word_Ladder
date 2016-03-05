@@ -52,7 +52,7 @@ public class WordLadderSolver
     			else{
     				if(charCheck(newWord, startWord) == 1){
     					temp.add(newWord);
-    				}
+    				}//add to the temporary solution list
     				else{
     					continue;
     				}
@@ -82,7 +82,9 @@ public class WordLadderSolver
    }
 
     
-    //Prints out the WordLadder
+    /*charcheck:
+     * checks how many characters are different between two words
+     */
     private int charCheck(String startWord, String endWord){
     	int count = 0;
     	for(int i = 0; i < 5; i++){
@@ -92,15 +94,22 @@ public class WordLadderSolver
     	}
     	return count;
     }
-    //Checks which position is different
+    
+    /*Poscheck:
+     * Checks which position is different between a word in the temp list
+     * and the current word. All words in the temp list are one letter away
+     * from the current word
+     */
     private int poscheck(String startWord, String endWord){
-    	for(int i =0; i < 5; i++){
+    	for(int i = 0; i < 5; i++){
     		if(startWord.charAt(i) != endWord.charAt(i)){
     			return i;
     		}
     	}
-    	return 6;
+    	return 5;
     }
+    
+    //Prints out the WordLadder
     public void print(){
     	System.out.println("**********\n");
     	for(int i = 0; i < this.WordLadder.size(); i++){
