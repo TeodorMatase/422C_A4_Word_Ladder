@@ -1,3 +1,9 @@
+/**
+ * @author Teo Matase
+ * @author Royce Li
+ * Dictionary Class holds all 5 letter english words
+ */
+
 package assignment4;
 
 import java.io.BufferedReader;
@@ -7,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.io.*;
+
 
 public class Dictionary {
 	public ArrayList<String> TrueDictionary;
@@ -28,7 +35,7 @@ public class Dictionary {
 				length++;
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("Dictionary file not found");
+			System.out.println("Dictionary file not found\n");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

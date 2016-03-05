@@ -7,28 +7,40 @@
 
 package assignment4;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 public class A4Driver {
-    @SuppressWarnings("unused")
     public static void main(String[] args)
     {
         // Create a word ladder solver object
     	Dictionary Dictionary = new Dictionary(args[0]);
-    	System.out.println(Dictionary.length);
-/*       WordLadderSolver wordLadderSolver = new WordLadderSolver(args[0]);
-
-        try 
-        {
-            LinkedList result = wordLadderSolver.computeLadder("money", "honey");
-			boolean correct = wordLadderSolver.validateResult("money", "honey", result);
-        } 
-        catch (NoSuchLadderException e) 
-        {
-            e.printStackTrace();
-        }
- */   
+    	WordLadderSolver WLS = new WordLadderSolver(Dictionary);
+    	String line = null;
+    	try {
+			FileReader in = new FileReader(args[1]);
+			BufferedReader reader = new BufferedReader(in);
+			while((line = reader.readLine()) != null){
+				line.replaceAll("\\s+", "");
+				if(line.length() > 11){
+					System.out.println(line + " Is not a valid input\n");
+					continue;
+				}
+				String startWord = line.substring(0, 5);
+				String endWord = line.substring(6);
+				WLS.MakeLadder(startWord, endWord, 0);
+				WLS.print();
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Input file not found\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
+}
 
 
     /* @param startWord The starting word in the word ladder.
@@ -61,6 +73,6 @@ public int charDifference(String fromWord, String toWord){
 	return count;
 }
 */
-}
+
 
 
