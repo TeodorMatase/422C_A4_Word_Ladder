@@ -14,7 +14,6 @@ public class WordLadderSolver
 {
 	public static Dictionary Dict;
 	public ArrayList<String> WordLadder; //SolutionList
-	public HashSet<String> set;
 	public WordLadderSolver(Dictionary dict1){
 		WordLadder = new ArrayList<String>();
 		WordLadderSolver.Dict = dict1;
