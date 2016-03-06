@@ -14,7 +14,7 @@ public class WordLadderSolver
 {
 	public static Dictionary Dict;
 	public ArrayList<String> WordLadder; //SolutionList
-	
+	public HashSet<String> set;
 	public WordLadderSolver(Dictionary dict1){
 		WordLadder = new ArrayList<String>();
 		WordLadderSolver.Dict = dict1;
@@ -36,6 +36,7 @@ public class WordLadderSolver
     	WordLadder.add(startWord);
     	int dif = charCheck(startWord,endWord);
     	if(dif == 1){ //end condition, only one letter difference
+    		WordLadder.add(endWord);
     		return true;
     	}
     	ArrayList<String> temp = new ArrayList<String>();
@@ -44,7 +45,7 @@ public class WordLadderSolver
     		newWord = Dict.TrueDictionary.get(i);
     		if(newWord.charAt(position) != startWord.charAt(position)){
     			continue;
-    		}
+    		}//characters at position need to be the same because that position cannot be changed
     		else{
     			if(temp.contains(newWord) == true || WordLadder.contains(newWord) == true || newWord.equals(startWord)){
     				continue;
@@ -71,10 +72,10 @@ public class WordLadderSolver
     				}
     			}
     			else{
-    				WordLadder.remove(startWord);
-    				for(int k = 0; k < temp.size(); k++){
-    					WordLadder.remove(temp.get(k));
-    				}
+    			//	WordLadder.remove(startWord);
+    			//	for(int k = 0; k < temp.size(); k++){
+    			//		WordLadder.remove(temp.get(k));
+    			//	}
     			}
     		}
     	WordLadder.remove(startWord);
@@ -106,7 +107,7 @@ public class WordLadderSolver
     			return i;
     		}
     	}
-    	return 5;
+    	return (Integer) null;
     }
     
     //Prints out the WordLadder

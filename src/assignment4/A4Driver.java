@@ -21,6 +21,9 @@ public class A4Driver {
     	WordLadderSolver WLS = new WordLadderSolver(Dictionary);
     	String line = null;
     	try {
+    		if (args.length == 1){
+    			System.out.println("There is no input file");
+    		}
 			FileReader in = new FileReader(args[1]);
 			BufferedReader reader = new BufferedReader(in);
 			while((line = reader.readLine()) != null){
