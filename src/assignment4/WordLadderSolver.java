@@ -70,7 +70,7 @@ public class WordLadderSolver
     /*charcheck:
      * checks how many characters are different between two words
      */
-    private int charCheck(String startWord, String endWord){
+    public int charCheck(String startWord, String endWord){
     	int count = 0;
     	for(int i = 0; i < 5; i++){
     		if(startWord.charAt(i) != endWord.charAt(i)){
@@ -85,7 +85,7 @@ public class WordLadderSolver
      * and the current word. All words in the temp list are one letter away
      * from the current word
      */
-    private int poscheck(String startWord, String endWord){
+    public int poscheck(String startWord, String endWord){
     	for(int i = 0; i < 5; i++){
     		if(startWord.charAt(i) != endWord.charAt(i)){
     			return i;
@@ -113,10 +113,14 @@ public class WordLadderSolver
     /*Clear:
      * Clears every word from the WordLadder
      */
-    public void Clear(){
+    public boolean Clear(){
     	while(WordLadder.size() > 0){
     		WordLadder.remove(0);
     	}
+    	if(WordLadder.size() == 0){
+    		return true;
+    	}
+    	return false; 
     }
 
     /*Check:
