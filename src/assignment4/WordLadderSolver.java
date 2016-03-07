@@ -25,7 +25,7 @@ public class WordLadderSolver
     public boolean MakeLadder(String startWord, String endWord, int position){
     	WordLadder.add(startWord);
     	int dif = charCheck(startWord,endWord);
-    	if(dif == 1){ //end condition, only one letter difference
+    	if(dif == 1 || dif ==0){ //end condition, only one letter difference
     		WordLadder.add(endWord);
     		return true;
     	}
