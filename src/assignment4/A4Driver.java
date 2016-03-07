@@ -14,28 +14,60 @@ import java.io.IOException;
 import java.util.List;
 
 public class A4Driver {
-    public static void main(String[] args)
-    {
-        // Create a word ladder solver object
+    @SuppressWarnings("resource")
+	public static void main(String[] args)
+    {   try{
+		if (args.length <= 1){
+			throw new FileNotFoundException("There is no input file");
+		}
+    	}
+		catch(FileNotFoundException e){
+			System.out.println(e.getMessage());
+			return;
+		}
+
     	Dictionary Dictionary = new Dictionary(args[0]);
     	WordLadderSolver WLS = new WordLadderSolver(Dictionary);
     	String line = null;
     	try {
-    		if (args.length == 1){
-    			System.out.println("There is no input file");
-    		}
 			FileReader in = new FileReader(args[1]);
 			BufferedReader reader = new BufferedReader(in);
 			while((line = reader.readLine()) != null){
-				line.replaceAll("\\s+", "");
-				if(line.length() > 11){
-					System.out.println(line + " Is not a valid input\n");
+				String temp = line;
+				line = line.replaceAll("\\s+", "");
+				try{
+					if(line.length() > 11 || line.length() < 10){
+						throw new InputIsNotValidException(temp + " Is not a valid input\n");
+					
+					}
+				}
+				catch(InputIsNotValidException e){
+					System.out.print(e.getMessage());
+					continue;
+				}
+				try{
+					for(int i = 0; i < line.length(); i ++){
+						if(!(((int)line.charAt(i) >= 'A' && (int)line.charAt(i) <= 'Z') || ((int)line.charAt(i) >= 'a' && (int)line.charAt(i) <= 'z'))){
+							throw new InputIsNotValidException(temp + " Is not a valid input\n");
+						}
+					}
+				}
+				catch(InputIsNotValidException e){
+					System.out.print(e.getMessage());
 					continue;
 				}
 				String startWord = line.substring(0, 5);
-				String endWord = line.substring(6);
+				String endWord = line.substring(5);
 				WLS.MakeLadder(startWord, endWord, 0);
-				WLS.print();
+				try {
+					WLS.Check(startWord,endWord);
+				} catch (NoSuchLadderException e) {
+					System.out.println("There exists no valid WordLadder between "+startWord+" and "+endWord);
+					WLS.Clear();
+					continue;
+				}
+				WLS.print(startWord,endWord);
+				WLS.Clear();
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("Input file not found\n");
@@ -44,38 +76,3 @@ public class A4Driver {
 		}
     }
 }
-
-
-    /* @param startWord The starting word in the word ladder.
-    * @param endWord The ending word in the word ladder.
-    * @return A list of strings that represents the word ladder. The 0th index should contain
-    * the startWord and the last position should contain endWord. All intermediate words should
-    * be different by exactly one letter.
-    * @throws NoSuchLadderException is thrown if no word ladder can be generated from startWord and endWord.
-    */
-    
-    
-/*    
-public String MakeLadder(String fromWord, String toWord, int position){
-	if(charDifference(fromWord,toWord) == 1){
-		return fromWord;
-	}
-	return "";
-}
-
-
-public int charDifference(String fromWord, String toWord){
-	int count = 0;
-	for(int i = 0; i < 5; i++){
-		char a = fromWord.charAt(i);
-		char b = fromWord.charAt(i);
-		if(b != a){
-			count++;
-		}
-	}
-	return count;
-}
-*/
-
-
-

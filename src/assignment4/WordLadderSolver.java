@@ -14,24 +14,15 @@ public class WordLadderSolver
 {
 	public static Dictionary Dict;
 	public ArrayList<String> WordLadder; //SolutionList
-	public HashSet<String> set;
+	
 	public WordLadderSolver(Dictionary dict1){
 		WordLadder = new ArrayList<String>();
 		WordLadderSolver.Dict = dict1;
-	}
+	}    
 	
-
-    public ArrayList<String> computeLadder(String startWord, String endWord) //throws NoSuchLadderException
-    {
-    	WordLadder.add(startWord);
-    	WordLadder.add(endWord);
-    	if(startWord.equals(endWord)){
-    		return WordLadder;
-    	}
-        // implement this method
-        throw new UnsupportedOperationException("Not implemented yet!");
-    }
-    
+    /*MakeLadder:
+     * Creates the wordLadder between startWord and endWord
+     */
     public boolean MakeLadder(String startWord, String endWord, int position){
     	WordLadder.add(startWord);
     	int dif = charCheck(startWord,endWord);
@@ -71,12 +62,6 @@ public class WordLadderSolver
     					return true;
     				}
     			}
-    			else{
-    			//	WordLadder.remove(startWord);
-    			//	for(int k = 0; k < temp.size(); k++){
-    			//		WordLadder.remove(temp.get(k));
-    			//	}
-    			}
     		}
     	WordLadder.remove(startWord);
     	return false;
@@ -110,20 +95,46 @@ public class WordLadderSolver
     	return (Integer) null;
     }
     
-    //Prints out the WordLadder
-    public void print(){
-    	System.out.println("**********\n");
+    /*print:
+     * prints out every word in the WordLadder
+     */
+    public void print(String startWord, String endWord){
+    	System.out.println("**********");
+    	if(startWord.equals(endWord)){
+    		System.out.println(startWord+"\n"+endWord);
+    		System.out.println("**********");
+    		return;
+    	}
     	for(int i = 0; i < this.WordLadder.size(); i++){
     		System.out.println(this.WordLadder.get(i) + " ");
     	}
-    	System.out.println("**********\n");
+    	System.out.println("**********");
+    }
+    
+    /*Clear:
+     * Clears every word from the WordLadder
+     */
+    public void Clear(){
+    	while(WordLadder.size() > 0){
+    		WordLadder.remove(0);
+    	}
     }
 
-/*    public boolean validateResult(String startWord, String endWord, ArrayList<String> wordLadder) 
-    {
-    	LinkedList a = new LinkedList(startWord,endWord);
-        throw new UnsupportedOperationException("Not implemented yet!");
+    /*Check:
+     * Checks to see if the WordLadder is valid, i.e. every step only changes 1 letter
+     */
+    public void Check(String startWord, String endWord) throws NoSuchLadderException{
+    	if(WordLadder.size() == 0){
+    		throw new NoSuchLadderException("There exists no valid WordLadder between "+startWord+" and "+endWord);
+    	}
+    	String temp1 = null;
+    	String temp2 = null;
+    	for(int i = 0; i < WordLadder.size() - 1; i++){
+    		temp1 = WordLadder.get(i);
+    		temp2 = WordLadder.get(i+1);
+    		if(charCheck(temp1,temp2)!= 1){
+    			throw new NoSuchLadderException("There exists no valid WordLadder between "+startWord+" and "+endWord);
+    		}
+    	}
     }
-
-*/   // add additional methods here
 }

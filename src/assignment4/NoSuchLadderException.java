@@ -1,7 +1,7 @@
 /**
  * @author Teo Matase
  * @author Royce Li
- * Throws exceptions 
+ * Exception for Invalid Ladders
  */
 
 package assignment4;
